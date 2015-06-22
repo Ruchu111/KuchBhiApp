@@ -1,0 +1,38 @@
+<div class="container">
+  <%- model_class = Student -%>
+<div class="page-header">
+  </div>
+<table class="table table-striped">
+  
+  <tbody>
+    <% @students.each do |student| %>
+      <tr class="row">
+        <td><%= image_tag(student.image, :alt=> "", class: "student_image student_#{student.id}_image") %></td>
+        <td class="col-sm-12">
+
+          Name:<%= student.name %><br>
+          <%= student.dob %><br>
+          <%= student.email %><br>
+          <%= student.mobile %><br>
+          <%= student.summary %><br>
+        </td>
+
+        <!-- <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_student_path(student), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      student_path(student),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_student_path,
+            :class => 'btn btn-primary' %>
+
+</div>
