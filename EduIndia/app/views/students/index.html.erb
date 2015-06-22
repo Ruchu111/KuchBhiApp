@@ -1,35 +1,37 @@
-<div class="container">
+<div class="students_index container">
   <%- model_class = Student -%>
-<div class="page-header">
+
+<% @students.each do |student| %>
+  <div class="row">
+        <div class="col-md-offset-1 col-md-2">
+          <%= image_tag(student.image, :alt=> "", class: "student_image student_#{student.id}_image") %>
+        </div>
+        
+        <div class="student-details col-md-6">
+          <p>
+            Name: <%= student.name %>
+          </p>
+          <p>
+            DOB: <%= student.dob %>
+          </p>
+          <p>
+            Email:<%= student.email %>
+          </p>
+          <p>
+            Contact:<%= student.mobile %>
+          </p>
+          <p>
+            Summary:<%= student.summary %>
+          </p>
+        </div>
+        <div class="col-md-2">
+          <button class="teach-me-button btn btn-default">Teach Me</button>
+        </div>
+
+      <div class="col-md-offset-1"></div>
   </div>
-<table class="table table-striped">
-  
-  <tbody>
-    <% @students.each do |student| %>
-      <tr class="row">
-        <td><%= image_tag(student.image, :alt=> "", class: "student_image student_#{student.id}_image") %></td>
-        <td class="col-sm-12">
-
-          Name:<%= student.name %><br>
-          <%= student.dob %><br>
-          <%= student.email %><br>
-          <%= student.mobile %><br>
-          <%= student.summary %><br>
-        </td>
-
-        <!-- <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_student_path(student), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      student_path(student),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <hr class="col-md-10 col-md-offset-1">
+<% end %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_student_path,
